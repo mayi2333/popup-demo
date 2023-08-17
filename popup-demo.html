@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>popup演示</title>
+    <link rel="stylesheet" href="http://i.gtimg.cn/vipstyle/frozenui/2.0.0/css/frozen.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <header class="ui-header ui-header-positive ui-border-b">
+        <h1>popup弹窗演示</h1>
+    </header>
+    <footer class="ui-footer ui-footer-stable ui-btn-group ui-border-t">
+		<button class="ui-btn-lg" onclick="load()">
+            刷新
+        </button>
+    </footer>
+    <div class="ui-container ui-center">
+        <div class="ui-btn-wrap">
+            <button class="ui-btn-lg" onclick="alert()">
+                alert提示
+            </button>
+        </div>
+        <div class="ui-btn-wrap">
+            <button class="ui-btn-lg" onclick="confirm()">
+                confirm对话框
+            </button>
+        </div>
+        <div class="ui-btn-wrap">
+            <button class="ui-btn-lg" onclick="warn()">
+                warn顶部警告
+            </button>
+        </div>
+        <div class="ui-btn-wrap">
+            <button class="ui-btn-lg" onclick="toast()">
+                toast轻提示
+            </button>
+        </div>
+
+    </div>
+</body>
+<script type="text/javascript" src="frozenUiPopup.js"></script>
+<script type="text/javascript">
+    function load() {
+        Popup.load();
+    }
+    function alert() {
+        Popup.alert('alert弹窗');
+    }
+    function confirm() {
+        var html = '<input id="quantity-input" type="number" placeholder="请输入数量" />'
+        Popup.confirm('输入数量', html, () => {
+            let quantity = document.querySelector('#quantity-input').value;
+            if (!!quantity && quantity >= 0 && quantity % 1 == 0) {
+                return true;
+            }
+            else {
+                Popup.toast('输入的格式不正确');
+            }
+        });
+    }
+    function warn() {
+        Popup.warn('顶部警告');
+    }
+    function toast() {
+        Popup.toast('toast轻提示');
+    }
+</script>
+</html>
